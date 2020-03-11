@@ -38,3 +38,18 @@ exports.scraper = function(url,parseFcn,filename)
 }
 
 
+//scrapes a URL, parses it with parseFcn, and archives the data in a JSON file called filename.
+exports.scraper2 = function(url,parseFcn,data)
+{
+    console.log("reading page");
+    retrievePage(url,function(html)
+    {
+        console.log("picked up html",html)
+        const $ = cheerio.load(html);
+//        var data = [];
+        parseFcn($,data);
+//        storeToDisk(filename,data,function(){console.log("Saved to "+filename);});
+    });
+}
+
+
